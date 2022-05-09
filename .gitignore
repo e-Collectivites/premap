@@ -1,0 +1,32 @@
+# Ignore Everything
+*
+
+#### Except these files ####
+
+# Base
+!/.gitignore
+!/.gitattributes
+!/.editorconfig
+!/README.md
+!/LICENSE
+!/*compose.yaml
+!/composer_install.sh
+
+# Dev
+!dev
+!dev/nginx-conf
+!dev/nginx-conf/*
+!dev/web
+!dev/web/modules
+!dev/web/modules/contrib
+!dev/web/modules/contrib/**
+!dev/web
+!dev/web/themes
+!dev/web/themes/contrib
+!dev/web/themes/contrib/**
+!dev/web/sites
+!dev/web/sites/default
+!dev/web/sites/default/files
+!dev/web/sites/default/files/*
+!dev/web/sites/default/files/translation
+!dev/web/sites/default/files/translation/*

@@ -1,0 +1,91 @@
+# Drupal with MariaDB
+#
+# Access via "http://premap.ecollectivites.fr"
+#
+# During initial Drupal setup,
+# Database type: MariaDB
+# Database name: premap
+# Database username: premap
+# Database password: see txt files
+# ADVANCED OPTIONS; Database host: premap
+
+version: "3.9"
+
+secrets:
+  mariadb-user_secret:
+    file: ~/PREMAP/preprod/mariadb_password.txt
+  mariadb-root_secret:
+    file: ~/PREMAP/preprod/mariadb_root_password.txt
+
+services:
+
+  drupal-preprod:
+    image: drupal:9.3.12-php8.0-fpm-alpine
+    volumes:
+      - ~/PREMAP/preprod/web:/var/www/html
+      - ~/PREMAP/composer_install.sh:/opt/drupal/composer_install.sh
+    entrypoint:
+      - docker-php-entrypoint
+      - /bin/sh
+      - -c
+      - "su \"`ls -ld . | awk 'NR==1 {print $$3}'`\" \"/opt/drupal/composer_install.sh\"; php-fpm"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+    depends_on:
+      - db-preprod
+      - web-preprod
+
+  db-preprod:
+    image: mariadb:10.7.3-focal
+    environment:
+      - MARIADB_DATABASE=premap
+      - MARIADB_USER=premap
+      - MARIADB_PASSWORD_FILE=/run/secrets/mariadb-user_secret
+      - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/mariadb-root_secret
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+    secrets:
+      - mariadb-user_secret
+      - mariadb-root_secret
+
+  web-preprod:
+    image: nginx:1.20.2-alpine
+    ports:
+      - 80:80
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+    volumes:
+      - ~/PREMAP/preprod/web:/var/www/html
+      - ~/PREMAP/preprod/nginx-conf:/etc/nginx/conf.d
+      - ~/PREMAP/preprod/nginx-log:/var/log/nginx
+
+  search-preprod:
+    image: solr:8.11.1-slim
+    ports:
+     - 8983:8983
+    command:
+      - solr-precreate
+      - gettingstarted
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
+    volumes:
+      - ~/PREMAP/dev/solr:/var/solr
+
+networks:
+  preprod:
