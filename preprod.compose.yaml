@@ -38,6 +38,8 @@ services:
     depends_on:
       - db-preprod
       - web-preprod
+    networks:
+      - preprod
 
   db-preprod:
     image: mariadb:10.7.3-focal
@@ -55,6 +57,8 @@ services:
     secrets:
       - mariadb-user_secret
       - mariadb-root_secret
+    networks:
+      - preprod
 
   web-preprod:
     image: nginx:1.20.2-alpine
@@ -70,6 +74,8 @@ services:
       - ~/PREMAP/preprod/web:/var/www/html
       - ~/PREMAP/preprod/nginx-conf:/etc/nginx/conf.d
       - ~/PREMAP/preprod/nginx-log:/var/log/nginx
+    networks:
+      - preprod
 
   search-preprod:
     image: solr:8.11.1-slim
@@ -86,6 +92,8 @@ services:
         window: 10s
     volumes:
       - ~/PREMAP/dev/solr:/var/solr
+    networks:
+      - preprod
 
 networks:
   preprod:
