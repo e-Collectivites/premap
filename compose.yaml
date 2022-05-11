@@ -44,7 +44,7 @@ services:
   db-dev:
     image: mariadb:10.7.3-focal
     ports:
-      - 3306:3306
+      - 3307:3306
     # command: --plugin-load-add=auth_ed25519
     environment:
       - MARIADB_DATABASE=premap

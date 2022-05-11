@@ -43,6 +43,8 @@ services:
 
   db-preprod:
     image: mariadb:10.7.3-focal
+    ports:
+      - 3306:3306
     environment:
       - MARIADB_DATABASE=premap
       - MARIADB_USER=premap
