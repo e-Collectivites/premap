@@ -59,6 +59,8 @@ services:
       - mariadb-root_secret
     networks:
       - preprod
+    volumes:
+      - ~/PREMAP/preprod/mysql:/var/lib/mysql
 
   web-preprod:
     image: nginx:1.20.2-alpine

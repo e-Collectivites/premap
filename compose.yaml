@@ -44,15 +44,16 @@ services:
   db-dev:
     image: mariadb:10.7.3-focal
     ports:
-      - 3307:3306
+      - 3306:3306
     # command: --plugin-load-add=auth_ed25519
     environment:
       - MARIADB_DATABASE=premap
       - MARIADB_USER=premap
       - MARIADB_PASSWORD_FILE=/run/secrets/mariadb-user_secret
       - MARIADB_ROOT_PASSWORD_FILE=/run/secrets/mariadb-root_secret
-    # volumes:
-    #   - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - ~/PREMAP/dev/mysql:/var/lib/mysql
     secrets:
       - mariadb-user_secret
       - mariadb-root_secret
