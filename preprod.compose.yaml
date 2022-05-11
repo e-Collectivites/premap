@@ -91,7 +91,7 @@ services:
         max_attempts: 3
         window: 10s
     volumes:
-      - ~/PREMAP/dev/solr:/var/solr
+      - ~/PREMAP/preprod/solr:/var/solr
     networks:
       - preprod
 
