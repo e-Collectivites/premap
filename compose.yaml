@@ -38,6 +38,8 @@ services:
     #   - db-dev
     #   - web-dev
     # tty: true
+    networks:
+      - dev
 
   db-dev:
     image: mariadb:10.7.3-focal
@@ -54,6 +56,8 @@ services:
     secrets:
       - mariadb-user_secret
       - mariadb-root_secret
+    networks:
+      - dev
 
   web-dev:
     image: nginx:1.20.2-alpine
@@ -67,6 +71,8 @@ services:
       # - drupal-dev-data:/var/www/html
       - ~/PREMAP/dev/nginx-conf:/etc/nginx/conf.d
       - ~/PREMAP/dev/nginx-log:/var/log/nginx
+    networks:
+      - dev
 
   search-dev:
     image: solr:8.11.1-slim
@@ -83,6 +89,8 @@ services:
         delay: 5s
         max_attempts: 3
         window: 10s
+    networks:
+      - dev
 
   # phpmyadmin-dev:
   #   image: phpmyadmin:5.1.3-fpm-alpine
@@ -104,7 +112,7 @@ services:
 #     driver: local
 #     driver_opts:
 #       o: bind
-#       device: ~/PREMAP/dev
+#       device: /home/ecuser01/PREMAP/dev
 #       type: none
 
 networks:
