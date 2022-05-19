@@ -27,7 +27,7 @@ services:
       # existing content of the image at the same location
       - ~/PREMAP/dev/web:/var/www/html
       # - drupal-dev-data:/var/www/html
-
+      - ~/PREMAP/composer.json:/opt/drupal/composer.json
       - ~/PREMAP/composer_install.sh:/opt/drupal/composer_install.sh
     entrypoint:
       - docker-php-entrypoint
