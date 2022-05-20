@@ -77,19 +77,11 @@ services:
 
   search-dev:
     image: solr:8.11.1-slim
-    ports:
-     - 8984:8983
     volumes:
       - ~/PREMAP/dev/solr:/var/solr
     command:
       - solr-precreate
       - gettingstarted
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 10s
     networks:
       - dev
 
