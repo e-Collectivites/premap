@@ -17,9 +17,9 @@
 !dev/nginx-conf
 !dev/nginx-conf/*
 !dev/web
-!dev/web/modules
-!dev/web/modules/contrib
-!dev/web/modules/contrib/**
+#!dev/web/modules
+!dev/web/modules/custom
+!dev/web/modules/custom/**
 !dev/web
 !dev/web/themes
 !dev/web/themes/contrib
@@ -30,3 +30,6 @@
 !dev/web/sites/default/files/*
 !dev/web/sites/default/files/translation
 !dev/web/sites/default/files/translation/*
+!dev/solr
+!dev/solr/**/*
+dev/solr/**/*log*/**/*
