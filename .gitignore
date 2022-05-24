@@ -11,6 +11,7 @@
 !/LICENSE
 !/*compose.yaml
 !/composer_install.sh
+!/backup.mysql
 
 # Dev
 !dev
@@ -33,3 +34,4 @@
 !dev/solr
 !dev/solr/**/*
 dev/solr/**/*log*/**/*
+dev/solr/data/*/data
