@@ -84,11 +84,6 @@ services:
 
   search-preprod:
     image: solr:8.11.1-slim
-    ports:
-     - 8983:8983
-    command:
-      - solr-precreate
-      - gettingstarted
     deploy:
       restart_policy:
         condition: on-failure
@@ -97,6 +92,7 @@ services:
         window: 10s
     volumes:
       - ~/PREMAP/preprod/solr:/var/solr
+      - ~/PREMAP/solr_security.json:/var/solr/data/security.json
     networks:
       - preprod
 

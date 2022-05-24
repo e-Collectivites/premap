@@ -25,4 +25,5 @@ if [ ! -d /opt/drupal/web/core ]; then
     mkdir -p /opt/drupal/web/libraries/jquery-ui-touch-punch
     wget https://raw.githubusercontent.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.min.js -O /opt/drupal/web/libraries/contrib/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js
     drush en search_api_solr backup_migrate tamper feeds feeds_ex feeds_tamper better_exposed_filters views_infinite_scroll -y
+    docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 fi
