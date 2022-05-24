@@ -15,22 +15,22 @@
 
 # Dev
 !dev
-!dev/nginx-conf
 !dev/nginx-conf/*
+
+# Drupal
 !dev/web
-#!dev/web/modules
-!dev/web/modules/custom
+!dev/web/modules
 !dev/web/modules/custom/**
-!dev/web
 !dev/web/themes
-!dev/web/themes/contrib
-!dev/web/themes/contrib/**
+!dev/web/themes/custom/**
 !dev/web/sites
 !dev/web/sites/default
 !dev/web/sites/default/files
 !dev/web/sites/default/files/*
 !dev/web/sites/default/files/translation
 !dev/web/sites/default/files/translation/*
+
+# SolR
 !dev/solr
 !dev/solr/**/*
 dev/solr/**/*log*/**/*
