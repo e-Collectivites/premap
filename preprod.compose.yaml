@@ -23,6 +23,7 @@ services:
     image: drupal:9.3.12-php8.0-fpm-alpine
     volumes:
       - ~/PREMAP/preprod/web:/var/www/html
+      - ~/PREMAP/composer.json:/opt/drupal/composer.json
       - ~/PREMAP/composer_install.sh:/opt/drupal/composer_install.sh
     entrypoint:
       - docker-php-entrypoint
@@ -43,8 +44,8 @@ services:
 
   db-preprod:
     image: mariadb:10.7.3-focal
-    ports:
-      - 3306:3306
+    # ports:
+    #   - 3306:3306
     environment:
       - MARIADB_DATABASE=premap
       - MARIADB_USER=premap
