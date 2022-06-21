@@ -20,7 +20,7 @@ secrets:
 services:
 
   drupal-dev:
-    image: drupal:9.3.12-php8.0-fpm-alpine
+    image: drupal:9.3-php8.1-fpm-alpine
     volumes:
       # this takes advantage of the feature in Docker that a new anonymous
       # volume (which is what we're creating here) will be initialized with the
@@ -37,6 +37,7 @@ services:
     depends_on:
       - db-dev
       - web-dev
+      - search-dev
     # tty: true
     networks:
       - dev
@@ -61,7 +62,7 @@ services:
       - dev
 
   web-dev:
-    image: nginx:1.20.2-alpine
+    image: nginx:alpine
     ports:
       - 8080:80
     volumes:
