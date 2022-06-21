@@ -11,7 +11,7 @@
 !/LICENSE
 !/*compose.yaml
 !/composer_install.sh
-!/backup.mysql
+!/dev/backup.mysql
 
 # Dev
 !dev
