@@ -20,7 +20,8 @@
 # Drupal
 !dev/web
 !dev/web/modules
-!dev/web/modules/custom/**
+!dev/web/modules/custom
+!dev/web/modules/custom/**/*
 !dev/web/themes
 !dev/web/themes/custom/**
 !dev/web/sites
